@@ -1,7 +1,6 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styled from "styled-components";
-import { movies } from "../../movie_data";
 import { useEffect, useState } from "react";
 import { config } from "../constant";
 
@@ -34,9 +33,11 @@ function Home() {
           {popularMovies.map((movie) => (
             <ul key={movie.id}>
               <ImgBox>
-                <img src={"https://image.tmdb.org/t/p/original" + movie.poster_path} alt="" height="50%"/>
+                <img src={"https://image.tmdb.org/t/p/original" + movie.poster_path} alt="" />
               </ImgBox>
-              <li>{movie.title}</li>
+              <TitleBox>
+                {movie.title}
+              </TitleBox>
             </ul>
           ))}
         </Carousel>
@@ -44,7 +45,6 @@ function Home() {
     </Container>
   );
 }
-
 const Container = styled.div``;
 const MoviePoster = styled.div`
   display: flex;
@@ -52,7 +52,16 @@ const MoviePoster = styled.div`
 `;
 
 const ImgBox = styled.div`
-  height: calc()
+  height: calc(100vh - 80x);
+  img {
+    display: block;
+  }
+`;
+
+const TitleBox = styled.div`
+  font-size: 2rem; 
+  font-weight: 600;
+  margin-top: 1rem;  
 `;
 
 export default Home;
